@@ -1,30 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Mini Discord</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Shield Chat</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div id="login">
-  <input id="username" placeholder="Pseudo">
-  <button onclick="enter()">Entrer</button>
-</div>
+<div id="app">
 
-<div id="app" style="display:none;">
-  <h2 id="title">#general</h2>
+  <!-- SIDEBAR -->
+  <div id="sidebar">
+    <h2>🛡 Shield Chat</h2>
 
-  <select id="channel" onchange="changeChannel()">
-    <option value="general">general</option>
-    <option value="gaming">gaming</option>
-    <option value="random">random</option>
-  </select>
+    <div class="channels">
+      <div class="channel" onclick="setChannel('general')"># general</div>
+      <div class="channel" onclick="setChannel('gaming')"># gaming</div>
+      <div class="channel" onclick="setChannel('random')"># random</div>
+    </div>
+  </div>
 
-  <div id="chat"></div>
+  <!-- CHAT -->
+  <div id="chatArea">
 
-  <input id="msg" placeholder="Message">
-  <button onclick="send()">Send</button>
+    <div id="topbar"># <span id="channelName">general</span></div>
+
+    <div id="chat"></div>
+
+    <div id="inputBar">
+      <input id="msg" placeholder="Écrire un message...">
+      <button onclick="send()">➤</button>
+    </div>
+
+  </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
