@@ -3,23 +3,12 @@ const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-let username = "";
 let channel = "general";
+let username = "User";
 
-function enter() {
-  username = document.getElementById("username").value.trim();
-  if (!username) return alert("Pseudo requis");
-
-  document.getElementById("login").style.display = "none";
-  document.getElementById("app").style.display = "block";
-
-  loadMessages();
-  listen();
-}
-
-function changeChannel() {
-  channel = document.getElementById("channel").value;
-  document.getElementById("title").innerText = "#" + channel;
+function setChannel(c) {
+  channel = c;
+  document.getElementById("channelName").innerText = c;
   loadMessages();
 }
 
@@ -34,7 +23,12 @@ async function loadMessages() {
   chat.innerHTML = "";
 
   data.forEach(m => {
-    chat.innerHTML += `<div><b>${m.username}</b>: ${m.content}</div>`;
+    chat.innerHTML += `
+      <div class="msg">
+        <b>${m.username}</b><br>
+        ${m.content}
+      </div>
+    `;
   });
 
   chat.scrollTop = chat.scrollHeight;
@@ -62,10 +56,18 @@ function listen() {
       payload => {
         if (payload.new.channel === channel) {
           const chat = document.getElementById("chat");
-          chat.innerHTML += `<div><b>${payload.new.username}</b>: ${payload.new.content}</div>`;
+          chat.innerHTML += `
+            <div class="msg">
+              <b>${payload.new.username}</b><br>
+              ${payload.new.content}
+            </div>
+          `;
           chat.scrollTop = chat.scrollHeight;
         }
       }
     )
     .subscribe();
 }
+
+loadMessages();
+listen();
