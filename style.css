@@ -1,28 +1,93 @@
 body {
+  margin: 0;
   font-family: Arial;
-  background: #111;
+  background: #1e1f22;
   color: white;
-  text-align: center;
 }
 
+#app {
+  display: flex;
+  height: 100vh;
+}
+
+/* SIDEBAR */
+#sidebar {
+  width: 220px;
+  background: #2b2d31;
+  padding: 15px;
+}
+
+#sidebar h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.channel {
+  padding: 10px;
+  margin: 5px 0;
+  background: #232428;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.channel:hover {
+  background: #3a3c42;
+}
+
+/* CHAT */
+#chatArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#topbar {
+  background: #2b2d31;
+  padding: 10px;
+  font-weight: bold;
+}
+
+/* MESSAGES */
 #chat {
-  height: 300px;
+  flex: 1;
   overflow-y: auto;
-  background: #222;
-  margin: 10px auto;
   padding: 10px;
-  width: 80%;
-  text-align: left;
 }
 
-input, select {
+.msg {
+  background: #2b2d31;
+  padding: 8px 12px;
+  margin: 5px 0;
+  border-radius: 8px;
+  max-width: 60%;
+}
+
+.msg b {
+  color: #5865f2;
+}
+
+/* INPUT */
+#inputBar {
+  display: flex;
   padding: 10px;
-  margin: 5px;
+  background: #2b2d31;
+}
+
+#msg {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: #1e1f22;
+  color: white;
+  border-radius: 5px;
 }
 
 button {
-  padding: 10px;
+  margin-left: 10px;
   background: #5865f2;
   border: none;
   color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
 }
